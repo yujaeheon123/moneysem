@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>주휴수당 계산기 2026 - 알바 월급·주휴시간 계산 | 머니셈</title>
+<meta name="description" content="2026년 최저시급 10,320원 기준 주휴수당과 주휴수당 포함 월급을 계산합니다. 지급 조건(주 15시간)과 계산 공식을 정리했어요.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/weekly-pay/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="주휴수당 계산기 2026 - 알바 월급·주휴시간 계산 | 머니셈">
+<meta property="og:description" content="2026년 최저시급 10,320원 기준 주휴수당과 주휴수당 포함 월급을 계산합니다. 지급 조건(주 15시간)과 계산 공식을 정리했어요.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/weekly-pay/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"주휴수당 계산기","url":"https://yujaeheon123.github.io/moneysem/weekly-pay/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"지각이나 조퇴를 하면 주휴수당이 없어지나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 개근은 '결근하지 않음'을 뜻해서, 지각·조퇴가 있어도 출근했다면 주휴수당을 받을 수 있어요. 다만 지각·조퇴한 시간만큼의 임금은 빠질 수 있어요."}},{"@type":"Question","name":"5인 미만 사업장도 주휴수당을 줘야 하나요?","acceptedAnswer":{"@type":"Answer","text":"네. 주휴수당은 사업장 규모와 관계없이 적용돼요. 연장·야간근로 가산수당과 달리 5인 미만 사업장도 지급 의무가 있어요."}},{"@type":"Question","name":"주휴수당을 못 받았다면?","acceptedAnswer":{"@type":"Answer","text":"임금 체불에 해당해요. 사업주에게 먼저 요청하고, 해결되지 않으면 고용노동부 고객상담센터(국번 없이 1350)나 관할 지방고용노동관서에 진정할 수 있어요. 임금채권 소멸시효는 3년이에요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/" aria-current="page">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">2026년 최저시급 10,320원</span>
+<h1>주휴수당 계산기</h1>
+<p class="lead">시급과 일주일 근무시간을 넣으면 주휴수당과 주휴수당을 포함한 월급을 계산해요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="field">
+    <label for="wage">시급</label>
+    <div class="input"><input id="wage" name="wage" inputmode="numeric" data-money="won" value="10,320"><span class="unit">원</span></div>
+    <div class="hint"></div>
+    <div class="chips" data-for="wage"><button type="button" data-v="10320">최저시급 10,320</button><button type="button" data-v="11000">11,000</button><button type="button" data-v="12000">12,000</button></div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="hours">하루 근무시간</label>
+      <div class="input"><input id="hours" name="hours" inputmode="decimal" value="5"><span class="unit">시간</span></div>
+      <div class="hint" data-static="1">휴게시간 제외</div>
+    </div>
+    <div class="field">
+      <label for="days">일주일 근무일</label>
+      <select id="days" name="days">
+        <option value="1">1일</option><option value="2">2일</option><option value="3">3일</option><option value="4">4일</option>
+        <option value="5" selected>5일</option><option value="6">6일</option>
+      </select>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+
+<article class="article">
+  <h2>주휴수당이란?</h2>
+  <p>일주일 동안 정해진 근무일을 모두 출근하면 받는 <strong>하루치 유급휴일 수당</strong>이에요. 아르바이트, 단시간 근로자도 조건을 채우면 받을 수 있어요(근로기준법 제55조).</p>
+
+  <h2>받을 수 있는 조건</h2>
+  <ul>
+    <li>1주 소정근로시간이 <strong>15시간 이상</strong></li>
+    <li>그 주에 정해진 근무일을 <strong>모두 출근</strong>(개근)</li>
+    <li>다음 주에도 근무가 예정되어 있을 것</li>
+  </ul>
+
+  <h2>계산 공식</h2>
+  <p class="formula"><strong>주휴수당 = (1주 근무시간 ÷ 40) × 8 × 시급</strong><br><small>1주 40시간 이상이면 8시간분으로 고정</small></p>
+  <p>예를 들어 시급 10,320원으로 하루 5시간, 주 5일(주 25시간) 일하면 주휴시간은 25 ÷ 40 × 8 = 5시간, 주휴수당은 <strong>51,600원</strong>이에요.</p>
+  <p>월급은 (주 근무시간 + 주휴시간) × 4.345주로 계산해요. 1년 365일을 7일과 12개월로 나눈 값이 4.345주예요. 주 40시간 기준이면 (40 + 8) × 4.345 ≒ 209시간이라 최저임금 월급이 10,320 × 209 = <strong>2,156,880원</strong>이 돼요.</p>
+
+  <p class="notice">야간수당·연장수당과 3.3% 공제까지 포함한 한 달 알바비는 <a href="../part-time/">알바 월급 계산기</a>에서 계산할 수 있어요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>지각이나 조퇴를 하면 주휴수당이 없어지나요?</summary>
+    <p>아니요. 개근은 '결근하지 않음'을 뜻해서, 지각·조퇴가 있어도 출근했다면 주휴수당을 받을 수 있어요. 다만 지각·조퇴한 시간만큼의 임금은 빠질 수 있어요.</p></details>
+  <details class="faq"><summary>5인 미만 사업장도 주휴수당을 줘야 하나요?</summary>
+    <p>네. 주휴수당은 사업장 규모와 관계없이 적용돼요. 연장·야간근로 가산수당과 달리 5인 미만 사업장도 지급 의무가 있어요.</p></details>
+  <details class="faq"><summary>주휴수당을 못 받았다면?</summary>
+    <p>임금 체불에 해당해요. 사업주에게 먼저 요청하고, 해결되지 않으면 고용노동부 고객상담센터(국번 없이 1350)나 관할 지방고용노동관서에 진정할 수 있어요. 임금채권 소멸시효는 3년이에요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../severance/">🧾 퇴직금 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/" aria-current="page">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/weekly-pay.js"></script>
+</body>
+</html>

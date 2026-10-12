@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>연봉 실수령액 계산기 2026 - 4대보험·소득세 자동 계산 | 머니셈</title>
+<meta name="description" content="2026년 국민연금 4.75%, 건강보험 3.595% 등 최신 요율과 근로소득 간이세액표로 연봉 실수령액과 월급 공제 내역을 계산하고 연봉별 실수령액표를 확인하세요.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/salary/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="연봉 실수령액 계산기 2026 - 4대보험·소득세 자동 계산 | 머니셈">
+<meta property="og:description" content="2026년 국민연금 4.75%, 건강보험 3.595% 등 최신 요율과 근로소득 간이세액표로 연봉 실수령액과 월급 공제 내역을 계산하고 연봉별 실수령액표를 확인하세요.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/salary/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"연봉 실수령액 계산기","url":"https://yujaeheon123.github.io/moneysem/salary/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"부양가족 수에는 누가 들어가나요?","acceptedAnswer":{"@type":"Answer","text":"본인을 포함해 기본공제 대상인 배우자, 자녀, 부모님 등을 셉니다. 본인과 배우자도 각각 1명으로 계산해요. 소득이 있는 가족은 원칙적으로 제외됩니다."}},{"@type":"Question","name":"같은 연봉인데 회사 동료와 실수령액이 다른 이유는?","acceptedAnswer":{"@type":"Answer","text":"비과세 수당 금액, 부양가족 수, 원천징수 비율(80%·100%·120%) 선택, 상여금 지급 방식이 다르면 월 실수령액이 달라져요. 국민연금은 매년 7월에 기준소득월액이 바뀌기도 해요."}},{"@type":"Question","name":"퇴직금 포함 연봉은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"연봉 계약서의 금액 안에 퇴직금이 들어 있는 경우예요. 이때는 연봉을 13으로 나눈 금액이 월급이 되고, 나머지 1/13은 퇴직할 때 받아요."}},{"@type":"Question","name":"계산 결과가 실제 월급과 몇십 원 다른 이유는?","acceptedAnswer":{"@type":"Answer","text":"회사마다 보험료 산정 시점(전년도 보수 기준), 국민연금 기준소득월액 적용 시기, 원 단위 처리 방식이 조금씩 달라서 생기는 차이예요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/" aria-current="page">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">2026년 최신 요율·간이세액표 반영</span>
+<h1>연봉 실수령액 계산기</h1>
+<p class="lead">연봉을 입력하면 국민연금·건강보험·고용보험과 소득세를 뺀 실제 월급을 바로 계산해요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="field">
+    <label for="annual">연봉 (세전)</label>
+    <div class="input"><input id="annual" name="annual" inputmode="numeric" data-money="man" value="4,000"><span class="unit">만원</span></div>
+    <div class="hint"></div>
+    <div class="chips" data-for="annual">
+      <button type="button" data-v="3000">3천만</button><button type="button" data-v="4000">4천만</button>
+      <button type="button" data-v="5000">5천만</button><button type="button" data-v="6000">6천만</button>
+      <button type="button" data-v="8000">8천만</button><button type="button" data-v="10000">1억</button>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="nonTax">월 비과세액</label>
+      <div class="input"><input id="nonTax" name="nonTax" inputmode="numeric" data-money="won" value="200,000"><span class="unit">원</span></div>
+      <div class="hint" data-static="1">식대는 월 20만원까지 비과세예요</div>
+    </div>
+    <div class="field">
+      <label for="family">부양가족 수 (본인 포함)</label>
+      <select id="family" name="family">
+        <option value="1">1명 (본인만)</option><option value="2">2명</option><option value="3">3명</option>
+        <option value="4">4명</option><option value="5">5명</option><option value="6">6명</option>
+        <option value="7">7명</option><option value="8">8명</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="children">8세~20세 자녀 수</label>
+      <select id="children" name="children">
+        <option value="0">없음</option><option value="1">1명</option><option value="2">2명</option>
+        <option value="3">3명</option><option value="4">4명</option>
+      </select>
+    </div>
+    <div class="field">
+      <span class="label">퇴직금</span>
+      <div class="segmented" role="radiogroup">
+        <label><input type="radio" name="sev" value="0" checked><span>연봉에 별도</span></label>
+        <label><input type="radio" name="sev" value="1"><span>연봉에 포함</span></label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+
+<article class="article">
+  <h2>2026년 연봉별 실수령액표</h2>
+  <p>비과세 식대 월 20만원, 부양가족 1명(본인), 퇴직금 별도 기준이에요. 내 조건으로 정확히 보려면 위 계산기를 이용하세요.</p>
+  <div class="table-wrap" style="max-height:520px"><table>
+<thead><tr><th>연봉</th><th>월 실수령액</th><th>4대보험</th><th>소득세+지방세</th><th>연 실수령액</th></tr></thead>
+<tbody><tr><td>2,400만원</td><td>1,808,470원</td><td>174,910원</td><td>16,620원</td><td>21,701,640원</td></tr>
+<tr><td>2,500만원</td><td>1,881,913원</td><td>182,980원</td><td>18,440원</td><td>22,582,956원</td></tr>
+<tr><td>2,600만원</td><td>1,955,336원</td><td>191,070원</td><td>20,260원</td><td>23,464,032원</td></tr>
+<tr><td>2,700만원</td><td>2,027,570원</td><td>199,190원</td><td>23,240원</td><td>24,330,840원</td></tr>
+<tr><td>2,800만원</td><td>2,099,993원</td><td>207,270원</td><td>26,070원</td><td>25,199,916원</td></tr>
+<tr><td>2,900만원</td><td>2,172,416원</td><td>215,360원</td><td>28,890원</td><td>26,068,992원</td></tr>
+<tr><td>3,000만원</td><td>2,244,440원</td><td>223,490원</td><td>32,070원</td><td>26,933,280원</td></tr>
+<tr><td>3,100만원</td><td>2,316,863원</td><td>231,570원</td><td>34,900원</td><td>27,802,356원</td></tr>
+<tr><td>3,200만원</td><td>2,389,286원</td><td>239,650원</td><td>37,730원</td><td>28,671,432원</td></tr>
+<tr><td>3,300만원</td><td>2,461,180원</td><td>247,780원</td><td>41,040원</td><td>29,534,160원</td></tr>
+<tr><td>3,400만원</td><td>2,531,003원</td><td>255,850원</td><td>46,480원</td><td>30,372,036원</td></tr>
+<tr><td>3,500만원</td><td>2,598,706원</td><td>263,950원</td><td>54,010원</td><td>31,184,472원</td></tr>
+<tr><td>3,600만원</td><td>2,665,440원</td><td>272,080원</td><td>62,480원</td><td>31,985,280원</td></tr>
+<tr><td>3,700만원</td><td>2,733,163원</td><td>280,160원</td><td>70,010원</td><td>32,797,956원</td></tr>
+<tr><td>3,800만원</td><td>2,800,876원</td><td>288,240원</td><td>77,550원</td><td>33,610,512원</td></tr>
+<tr><td>3,900만원</td><td>2,868,100원</td><td>296,360원</td><td>85,540원</td><td>34,417,200원</td></tr>
+<tr><td>4,000만원</td><td>2,935,803원</td><td>304,450원</td><td>93,080원</td><td>35,229,636원</td></tr>
+<tr><td>4,100만원</td><td>3,003,536원</td><td>312,530원</td><td>100,600원</td><td>36,042,432원</td></tr>
+<tr><td>4,200만원</td><td>3,066,300원</td><td>320,660원</td><td>113,040원</td><td>36,795,600원</td></tr>
+<tr><td>4,300만원</td><td>3,130,783원</td><td>328,750원</td><td>123,800원</td><td>37,569,396원</td></tr>
+<tr><td>4,400만원</td><td>3,195,286원</td><td>336,820원</td><td>134,560원</td><td>38,343,432원</td></tr>
+<tr><td>4,500만원</td><td>3,259,730원</td><td>344,950원</td><td>145,320원</td><td>39,116,760원</td></tr>
+<tr><td>4,600만원</td><td>3,324,233원</td><td>353,030원</td><td>156,070원</td><td>39,890,796원</td></tr>
+<tr><td>4,700만원</td><td>3,388,716원</td><td>361,120원</td><td>166,830원</td><td>40,664,592원</td></tr>
+<tr><td>4,800만원</td><td>3,444,560원</td><td>369,260원</td><td>186,180원</td><td>41,334,720원</td></tr>
+<tr><td>4,900만원</td><td>3,508,073원</td><td>377,330원</td><td>197,930원</td><td>42,096,876원</td></tr>
+<tr><td>5,000만원</td><td>3,571,576원</td><td>385,410원</td><td>209,680원</td><td>42,858,912원</td></tr>
+<tr><td>5,100만원</td><td>3,635,030원</td><td>393,540원</td><td>221,430원</td><td>43,620,360원</td></tr>
+<tr><td>5,200만원</td><td>3,698,543원</td><td>401,620원</td><td>233,170원</td><td>44,382,516원</td></tr>
+<tr><td>5,300만원</td><td>3,762,046원</td><td>409,700원</td><td>244,920원</td><td>45,144,552원</td></tr>
+<tr><td>5,400만원</td><td>3,822,550원</td><td>417,840원</td><td>259,610원</td><td>45,870,600원</td></tr>
+<tr><td>5,500만원</td><td>3,886,063원</td><td>425,920원</td><td>271,350원</td><td>46,632,756원</td></tr>
+<tr><td>5,600만원</td><td>3,949,576원</td><td>433,990원</td><td>283,100원</td><td>47,394,912원</td></tr>
+<tr><td>5,700만원</td><td>4,012,580원</td><td>442,130원</td><td>295,290원</td><td>48,150,960원</td></tr>
+<tr><td>5,800만원</td><td>4,072,753원</td><td>450,200원</td><td>310,380원</td><td>48,873,036원</td></tr>
+<tr><td>5,900만원</td><td>4,135,646원</td><td>458,300원</td><td>322,720원</td><td>49,627,752원</td></tr>
+<tr><td>6,000만원</td><td>4,195,410원</td><td>466,430원</td><td>338,160원</td><td>50,344,920원</td></tr>
+<tr><td>6,500만원</td><td>4,509,916원</td><td>506,880원</td><td>399,870원</td><td>54,118,992원</td></tr>
+<tr><td>7,000만원</td><td>4,821,293원</td><td>547,380원</td><td>464,660원</td><td>57,855,516원</td></tr>
+<tr><td>7,500만원</td><td>5,095,650원</td><td>587,880원</td><td>566,470원</td><td>61,147,800원</td></tr>
+<tr><td>8,000만원</td><td>5,367,076원</td><td>628,340원</td><td>671,250원</td><td>64,404,912원</td></tr>
+<tr><td>8,500만원</td><td>5,652,373원</td><td>654,930원</td><td>776,030원</td><td>67,828,476원</td></tr>
+<tr><td>9,000만원</td><td>5,943,560원</td><td>675,630원</td><td>880,810원</td><td>71,322,720원</td></tr>
+<tr><td>9,500만원</td><td>6,239,736원</td><td>696,330원</td><td>980,600원</td><td>74,876,832원</td></tr>
+<tr><td>10,000만원</td><td>6,530,913원</td><td>717,030원</td><td>1,085,390원</td><td>78,370,956원</td></tr>
+<tr><td>11,000만원</td><td>7,108,246원</td><td>758,420원</td><td>1,300,000원</td><td>85,298,952원</td></tr>
+<tr><td>12,000만원</td><td>7,613,360원</td><td>799,820원</td><td>1,586,820원</td><td>91,360,320원</td></tr>
+<tr><td>13,000만원</td><td>8,067,533원</td><td>841,210원</td><td>1,924,590원</td><td>96,810,396원</td></tr>
+<tr><td>14,000만원</td><td>8,545,066원</td><td>882,600원</td><td>2,239,000원</td><td>102,540,792원</td></tr>
+<tr><td>15,000만원</td><td>9,022,570원</td><td>924,000원</td><td>2,553,430원</td><td>108,270,840원</td></tr></tbody></table></div>
+
+  <h2>월급에서 빠지는 돈 (2026년 기준)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>항목</th><th>근로자 부담</th><th>계산 기준</th></tr></thead>
+    <tbody>
+      <tr><td>국민연금</td><td>4.75%</td><td>기준소득월액 (41만~659만원)</td></tr>
+      <tr><td>건강보험</td><td>3.595%</td><td>보수월액</td></tr>
+      <tr><td>장기요양보험</td><td>건강보험료의 13.14%</td><td>소득 대비 0.9448%의 절반 수준</td></tr>
+      <tr><td>고용보험</td><td>0.9%</td><td>보수월액</td></tr>
+      <tr><td>소득세</td><td>간이세액표</td><td>월급여·부양가족 수</td></tr>
+      <tr><td>지방소득세</td><td>소득세의 10%</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <p>2026년에는 연금개혁으로 국민연금 보험료율이 9%에서 9.5%로 올라 근로자 부담이 4.5%에서 4.75%가 됐어요. 건강보험료율도 7.09%에서 7.19%로 인상됐습니다. 국민연금은 소득이 월 659만원을 넘으면 더 늘지 않아요(2026년 7월~2027년 6월 기준).</p>
+
+  <h2>계산 방법</h2>
+  <ol>
+    <li><strong>월급 = 연봉 ÷ 12</strong> (퇴직금 포함 연봉이면 ÷ 13)</li>
+    <li><strong>과세 대상 월급 = 월급 − 비과세액</strong>. 식대(월 20만원 한도), 자가운전보조금 등은 세금과 4대보험이 붙지 않아요.</li>
+    <li>과세 대상 월급에 4대보험 요율을 곱하고, 10원 미만은 버려요.</li>
+    <li>소득세는 국세청 <strong>근로소득 간이세액표</strong>에서 월급과 부양가족 수에 해당하는 금액을 찾아요. 8~20세 자녀가 있으면 1명 20,830원, 2명 45,830원을 추가로 빼줘요.</li>
+    <li><strong>실수령액 = 월급 − 4대보험 − 소득세 − 지방소득세</strong></li>
+  </ol>
+  <p class="notice">매달 떼는 소득세는 '미리 내는 세금'이에요. 실제 세금은 다음 해 2월 연말정산에서 확정되고, 신용카드·의료비·교육비 공제 등에 따라 돌려받거나 더 낼 수 있어요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>부양가족 수에는 누가 들어가나요?</summary>
+    <p>본인을 포함해 기본공제 대상인 배우자, 자녀, 부모님 등을 셉니다. 본인과 배우자도 각각 1명으로 계산해요. 소득이 있는 가족은 원칙적으로 제외됩니다.</p></details>
+  <details class="faq"><summary>같은 연봉인데 회사 동료와 실수령액이 다른 이유는?</summary>
+    <p>비과세 수당 금액, 부양가족 수, 원천징수 비율(80%·100%·120%) 선택, 상여금 지급 방식이 다르면 월 실수령액이 달라져요. 국민연금은 매년 7월에 기준소득월액이 바뀌기도 해요.</p></details>
+  <details class="faq"><summary>퇴직금 포함 연봉은 무엇인가요?</summary>
+    <p>연봉 계약서의 금액 안에 퇴직금이 들어 있는 경우예요. 이때는 연봉을 13으로 나눈 금액이 월급이 되고, 나머지 1/13은 퇴직할 때 받아요.</p></details>
+  <details class="faq"><summary>계산 결과가 실제 월급과 몇십 원 다른 이유는?</summary>
+    <p>회사마다 보험료 산정 시점(전년도 보수 기준), 국민연금 기준소득월액 적용 시기, 원 단위 처리 방식이 조금씩 달라서 생기는 차이예요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../severance/">🧾 퇴직금 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/" aria-current="page">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/salary.js"></script>
+</body>
+</html>

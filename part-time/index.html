@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>알바 월급 계산기 2026 - 주휴·야간·연장수당, 3.3% 실수령액 | 머니셈</title>
+<meta name="description" content="시급과 출퇴근 시간으로 한 달 알바비를 계산합니다. 2026년 최저시급 10,320원, 주휴수당·야간수당·연장수당과 3.3%·4대보험 공제 후 실수령액까지.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/part-time/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="알바 월급 계산기 2026 - 주휴·야간·연장수당, 3.3% 실수령액 | 머니셈">
+<meta property="og:description" content="시급과 출퇴근 시간으로 한 달 알바비를 계산합니다. 2026년 최저시급 10,320원, 주휴수당·야간수당·연장수당과 3.3%·4대보험 공제 후 실수령액까지.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/part-time/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"알바 월급 계산기","url":"https://yujaeheon123.github.io/moneysem/part-time/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"5인 미만 가게에서는 야간수당을 못 받나요?","acceptedAnswer":{"@type":"Answer","text":"상시 근로자 5인 미만 사업장은 연장·야간·휴일근로 가산수당(50%) 의무가 없어요. 하지만 일한 시간만큼의 기본 시급과 주휴수당은 반드시 받아야 해요."}},{"@type":"Question","name":"휴게시간은 어떻게 정해지나요?","acceptedAnswer":{"@type":"Answer","text":"근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 중간에 줘야 해요. 휴게시간은 임금에서 빠지므로 정확히 입력해야 결과가 맞아요. 이 계산기는 휴게시간을 야간이 아닌 시간에 쓴다고 가정해요."}},{"@type":"Question","name":"한 달이 4주인데 왜 4.345주로 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"한 달은 평균 30.4일이라 4주보다 조금 길어요. 1년 365일을 12개월과 7일로 나누면 4.345주가 되고, 고용노동부도 월급 환산에 이 값을 써요. 실제 급여는 그 달의 실제 근무일 수에 따라 조금씩 달라져요."}},{"@type":"Question","name":"알바도 퇴직금을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 같은 곳에서 1년 이상, 4주 평균 주 15시간 이상 일했다면 퇴직금을 받을 수 있어요. 퇴직금 계산기에서 금액을 확인해 보세요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/" aria-current="page">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">2026년 최저시급 10,320원</span>
+<h1>알바 월급 계산기</h1>
+<p class="lead">시급과 출퇴근 시간만 넣으면 주휴수당·야간수당·연장수당을 모두 더한 한 달 알바비를 계산해요. 3.3% 떼는 경우의 실수령액도 볼 수 있어요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="field">
+    <label for="wage">시급</label>
+    <div class="input"><input id="wage" name="wage" inputmode="numeric" data-money="won" value="10,320"><span class="unit">원</span></div>
+    <div class="hint"></div>
+    <div class="chips" data-for="wage"><button type="button" data-v="10320">최저시급 10,320</button><button type="button" data-v="11000">11,000</button><button type="button" data-v="12000">12,000</button><button type="button" data-v="15000">15,000</button></div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="start">출근 시간</label>
+      <div class="input"><input id="start" name="start" type="time" value="18:00"></div>
+    </div>
+    <div class="field">
+      <label for="end">퇴근 시간</label>
+      <div class="input"><input id="end" name="end" type="time" value="23:00"></div>
+      <div class="hint" data-static="1">자정을 넘겨도 돼요</div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="break">하루 휴게시간</label>
+      <select id="break" name="break">
+        <option value="0" selected>없음</option><option value="30">30분</option><option value="60">1시간</option>
+        <option value="90">1시간 30분</option><option value="120">2시간</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="days">일주일 근무일</label>
+      <select id="days" name="days">
+        <option value="1">1일</option><option value="2">2일</option><option value="3">3일</option><option value="4">4일</option>
+        <option value="5" selected>5일</option><option value="6">6일</option><option value="7">7일</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">사업장 규모</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="size" value="small" checked><span>5인 미만</span></label>
+      <label><input type="radio" name="size" value="big"><span>5인 이상 (가산수당)</span></label>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">월급에서 떼는 돈</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="ded" value="none" checked><span>없음</span></label>
+      <label><input type="radio" name="ded" value="freelance"><span>3.3%</span></label>
+      <label><input type="radio" name="ded" value="insurance"><span>4대보험</span></label>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+
+<article class="article">
+  <h2>알바비는 이렇게 계산해요</h2>
+  <p class="formula"><strong>한 달 알바비 = (기본급 + 주휴수당 + 연장수당 + 야간수당) × 4.345주</strong><br><small>4.345주 = 365일 ÷ 7일 ÷ 12개월</small></p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>항목</th><th>계산</th><th>조건</th></tr></thead>
+    <tbody>
+      <tr><td>기본급</td><td>시급 × 일한 시간</td><td>모든 알바</td></tr>
+      <tr><td>주휴수당</td><td>(주 근무시간 ÷ 40) × 8 × 시급</td><td>주 15시간 이상 + 개근</td></tr>
+      <tr><td>연장수당</td><td>시급 × 50% × 초과 시간</td><td>5인 이상, 하루 8시간·주 40시간 초과</td></tr>
+      <tr><td>야간수당</td><td>시급 × 50% × 야간 시간</td><td>5인 이상, 밤 10시~아침 6시</td></tr>
+    </tbody>
+  </table></div>
+  <p>예를 들어 최저시급으로 저녁 6시부터 밤 11시까지 주 5일(주 25시간) 일하면, 기본급 약 112만원에 주휴수당 약 22만원이 더해져요. 5인 이상 사업장이라면 밤 10~11시 1시간에 대해 야간수당도 받아요.</p>
+
+  <h2>3.3%와 4대보험, 무엇이 다를까?</h2>
+  <ul>
+    <li><strong>3.3% 공제</strong>: 사업소득세 3% + 지방소득세 0.3%를 떼요. 4대보험에 가입하지 않는 대신 다음 해 5월 종합소득세 신고로 일부를 돌려받을 수 있어요.</li>
+    <li><strong>4대보험 가입</strong>: 국민연금 4.75%, 건강보험 3.595%, 장기요양, 고용보험 0.9%와 근로소득세를 떼요. 실업급여를 받을 수 있고 경력으로도 인정돼요.</li>
+    <li>사업주가 근로자를 고용했는데도 3.3%만 떼는 것은 원칙적으로 맞지 않아요. 근로계약서를 쓰고 일하는 알바는 근로자예요.</li>
+  </ul>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>5인 미만 가게에서는 야간수당을 못 받나요?</summary>
+    <p>상시 근로자 5인 미만 사업장은 연장·야간·휴일근로 가산수당(50%) 의무가 없어요. 하지만 일한 시간만큼의 기본 시급과 주휴수당은 반드시 받아야 해요.</p></details>
+  <details class="faq"><summary>휴게시간은 어떻게 정해지나요?</summary>
+    <p>근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 중간에 줘야 해요. 휴게시간은 임금에서 빠지므로 정확히 입력해야 결과가 맞아요. 이 계산기는 휴게시간을 야간이 아닌 시간에 쓴다고 가정해요.</p></details>
+  <details class="faq"><summary>한 달이 4주인데 왜 4.345주로 계산하나요?</summary>
+    <p>한 달은 평균 30.4일이라 4주보다 조금 길어요. 1년 365일을 12개월과 7일로 나누면 4.345주가 되고, 고용노동부도 월급 환산에 이 값을 써요. 실제 급여는 그 달의 실제 근무일 수에 따라 조금씩 달라져요.</p></details>
+  <details class="faq"><summary>알바도 퇴직금을 받을 수 있나요?</summary>
+    <p>네. 같은 곳에서 1년 이상, 4주 평균 주 15시간 이상 일했다면 퇴직금을 받을 수 있어요. 퇴직금 계산기에서 금액을 확인해 보세요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../severance/">🧾 퇴직금 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/" aria-current="page">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/part-time.js"></script>
+</body>
+</html>

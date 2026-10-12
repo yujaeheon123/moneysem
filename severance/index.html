@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>퇴직금 계산기 2026 - 평균임금으로 정확하게 | 머니셈</title>
+<meta name="description" content="입사일, 퇴직일, 최근 3개월 급여로 법정 퇴직금을 계산합니다. 평균임금 계산법, 상여금·연차수당 반영 방법, 지급 조건까지 정리했어요.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/severance/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="퇴직금 계산기 2026 - 평균임금으로 정확하게 | 머니셈">
+<meta property="og:description" content="입사일, 퇴직일, 최근 3개월 급여로 법정 퇴직금을 계산합니다. 평균임금 계산법, 상여금·연차수당 반영 방법, 지급 조건까지 정리했어요.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/severance/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"퇴직금 계산기","url":"https://yujaeheon123.github.io/moneysem/severance/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"평균임금이 통상임금보다 적으면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"평균임금이 통상임금보다 적으면 통상임금을 평균임금으로 보고 계산해요. 휴직 등으로 최근 3개월 급여가 줄었을 때 해당될 수 있어요."}},{"@type":"Question","name":"육아휴직이나 병가 기간은 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"육아휴직, 출산휴가, 업무상 부상·질병 휴업 기간은 평균임금 계산에서 제외해요. 이런 기간이 있다면 회사나 고용노동부(국번 없이 1350)에 확인하는 것이 정확해요."}},{"@type":"Question","name":"1년에서 며칠 모자라면 퇴직금이 없나요?","acceptedAnswer":{"@type":"Answer","text":"법정 퇴직금은 계속근로기간이 1년 이상이어야 생겨요. 퇴직일은 마지막 근무일의 다음 날이므로, 1년째 되는 날까지 근무했다면 1년을 채운 것으로 봐요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/" aria-current="page">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">근로자퇴직급여 보장법 기준</span>
+<h1>퇴직금 계산기</h1>
+<p class="lead">입사일, 퇴직일, 최근 3개월 급여만 있으면 법정 퇴직금을 계산할 수 있어요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="grid-2">
+    <div class="field">
+      <label for="start">입사일</label>
+      <div class="input"><input id="start" name="start" type="date"></div>
+    </div>
+    <div class="field">
+      <label for="end">퇴직일</label>
+      <div class="input"><input id="end" name="end" type="date"></div>
+      <div class="hint" data-static="1">마지막 근무일의 다음 날</div>
+    </div>
+  </div>
+  <div class="field">
+    <label for="wages3m">퇴직 전 3개월 급여 총액 (세전)</label>
+    <div class="input"><input id="wages3m" name="wages3m" inputmode="numeric" data-money="won" value="9,000,000"><span class="unit">원</span></div>
+    <div class="hint"></div>
+    <div class="chips" id="monthly-helper">
+      <button type="button" data-m="2500000">월 250만</button><button type="button" data-m="3000000">월 300만</button>
+      <button type="button" data-m="4000000">월 400만</button><button type="button" data-m="5000000">월 500만</button>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="bonus">최근 1년 상여금 총액</label>
+      <div class="input"><input id="bonus" name="bonus" inputmode="numeric" data-money="won" value="0"><span class="unit">원</span></div>
+      <div class="hint"></div>
+    </div>
+    <div class="field">
+      <label for="leave">최근 1년 연차수당</label>
+      <div class="input"><input id="leave" name="leave" inputmode="numeric" data-money="won" value="0"><span class="unit">원</span></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+
+<article class="article">
+  <h2>퇴직금 계산 공식</h2>
+  <p class="formula"><strong>퇴직금 = 1일 평균임금 × 30일 × (재직일수 ÷ 365)</strong></p>
+  <p class="formula"><strong>1일 평균임금 = 퇴직 전 3개월 임금 총액 ÷ 퇴직 전 3개월 총 일수</strong></p>
+  <ul>
+    <li><strong>3개월 임금 총액</strong>: 기본급과 매달 받는 수당(직책수당, 정기적인 연장근로수당 등)을 합친 세전 금액이에요.</li>
+    <li><strong>상여금·연차수당</strong>: 최근 1년 동안 받은 금액의 3/12만큼을 3개월 임금에 더해요.</li>
+    <li><strong>3개월 총 일수</strong>: 달력 기준이라 89일~92일 사이예요. 그래서 같은 월급이라도 퇴직 시기에 따라 몇만 원 차이가 날 수 있어요.</li>
+  </ul>
+
+  <h2>퇴직금을 받을 수 있는 조건</h2>
+  <ul>
+    <li>같은 회사에서 <strong>1년 이상</strong> 계속 일했어야 해요.</li>
+    <li>4주 평균으로 <strong>주 15시간 이상</strong> 일했어야 해요. 아르바이트·계약직도 조건을 채우면 받을 수 있어요.</li>
+    <li>회사는 퇴직일로부터 <strong>14일 이내</strong>에 지급해야 해요(당사자 합의로 연장 가능).</li>
+  </ul>
+
+  <h2>예시</h2>
+  <p>2024년 1월 1일에 입사해 2026년 1월 1일에 퇴직(마지막 근무 2025년 12월 31일), 월급 300만원, 상여금 없음이라면:</p>
+  <ul>
+    <li>3개월 임금 900만원 ÷ 92일(10/1~12/31) = 1일 평균임금 약 97,826원</li>
+    <li>재직일수 731일 → 97,826원 × 30 × 731 ÷ 365 ≒ <strong>약 588만원</strong></li>
+  </ul>
+  <p class="notice">여기서 계산하는 금액은 세전 퇴직금이에요. 실제로 받을 때는 퇴직소득세가 원천징수되며, 근속 연수가 길수록 세금 부담이 줄어들어요. 퇴직연금(DC형)에 가입했다면 운용 수익에 따라 금액이 달라져요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>평균임금이 통상임금보다 적으면 어떻게 되나요?</summary>
+    <p>평균임금이 통상임금보다 적으면 통상임금을 평균임금으로 보고 계산해요. 휴직 등으로 최근 3개월 급여가 줄었을 때 해당될 수 있어요.</p></details>
+  <details class="faq"><summary>육아휴직이나 병가 기간은 어떻게 계산하나요?</summary>
+    <p>육아휴직, 출산휴가, 업무상 부상·질병 휴업 기간은 평균임금 계산에서 제외해요. 이런 기간이 있다면 회사나 고용노동부(국번 없이 1350)에 확인하는 것이 정확해요.</p></details>
+  <details class="faq"><summary>1년에서 며칠 모자라면 퇴직금이 없나요?</summary>
+    <p>법정 퇴직금은 계속근로기간이 1년 이상이어야 생겨요. 퇴직일은 마지막 근무일의 다음 날이므로, 1년째 되는 날까지 근무했다면 1년을 채운 것으로 봐요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/" aria-current="page">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/severance.js"></script>
+</body>
+</html>

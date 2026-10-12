@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>대출 이자 계산기 - 원리금균등·원금균등·만기일시 상환표 | 머니셈</title>
+<meta name="description" content="대출 금액, 금리, 기간을 넣으면 원리금균등·원금균등·만기일시 상환 방식별 월 상환액, 총 이자, 회차별 상환 스케줄을 보여줍니다.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/loan/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="대출 이자 계산기 - 원리금균등·원금균등·만기일시 상환표 | 머니셈">
+<meta property="og:description" content="대출 금액, 금리, 기간을 넣으면 원리금균등·원금균등·만기일시 상환 방식별 월 상환액, 총 이자, 회차별 상환 스케줄을 보여줍니다.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/loan/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"대출 이자 계산기","url":"https://yujaeheon123.github.io/moneysem/loan/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"중도상환하면 이자가 얼마나 줄어드나요?","acceptedAnswer":{"@type":"Answer","text":"남은 원금이 줄어든 만큼 이후 이자가 줄어요. 다만 대출 후 3년 이내에는 보통 중도상환수수료(0.5~1.5% 수준)가 붙으니, 아끼는 이자와 수수료를 비교해 보세요."}},{"@type":"Question","name":"변동금리 대출도 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"현재 금리가 만기까지 유지된다고 가정한 결과예요. 변동금리는 금리가 바뀔 때마다 월 상환액이 다시 계산되므로, 금리를 바꿔 넣어 보며 범위를 가늠해 보세요."}},{"@type":"Question","name":"은행 계산과 몇 원 차이가 나는 이유는?","acceptedAnswer":{"@type":"Answer","text":"은행은 실제 일수(일할 계산)로 이자를 매기거나 원 단위 처리 방식이 달라서 소액 차이가 날 수 있어요. 이 계산기는 매월 같은 기간으로 계산해요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/" aria-current="page">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">상환 스케줄 포함</span>
+<h1>대출 이자 계산기</h1>
+<p class="lead">대출 금액, 금리, 기간을 넣으면 상환 방식별로 매달 내는 돈과 총 이자를 비교할 수 있어요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="field">
+    <label for="principal">대출 금액</label>
+    <div class="input"><input id="principal" name="principal" inputmode="numeric" data-money="man" value="10,000"><span class="unit">만원</span></div>
+    <div class="hint"></div>
+    <div class="chips" data-for="principal">
+      <button type="button" data-v="1000">1천만</button><button type="button" data-v="3000">3천만</button>
+      <button type="button" data-v="10000">1억</button><button type="button" data-v="30000">3억</button><button type="button" data-v="50000">5억</button>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="rate">연 금리</label>
+      <div class="input"><input id="rate" name="rate" inputmode="decimal" value="4.0"><span class="unit">%</span></div>
+    </div>
+    <div class="field">
+      <label for="years">대출 기간</label>
+      <div class="input"><input id="years" name="years" inputmode="numeric" value="30"><span class="unit">년</span></div>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">상환 방식</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="method" value="equal-payment" checked><span>원리금균등</span></label>
+      <label><input type="radio" name="method" value="equal-principal"><span>원금균등</span></label>
+      <label><input type="radio" name="method" value="bullet"><span>만기일시</span></label>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+<section class="card" id="compare-card"><h2 style="margin-top:0">상환 방식별 비교</h2><div id="compare"></div></section>
+<section class="card"><h2 style="margin-top:0">회차별 상환 스케줄</h2><div id="schedule"></div></section>
+
+<article class="article">
+  <h2>상환 방식, 무엇이 다를까?</h2>
+  <h3>원리금균등상환</h3>
+  <p>매달 <strong>같은 금액</strong>(원금+이자)을 내요. 초반에는 이자 비중이 크고 갈수록 원금 비중이 커져요. 월 지출이 일정해서 계획 세우기 좋아 주택담보대출에서 가장 많이 써요.</p>
+  <p class="formula">월 상환액 = 대출금 × r × (1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1)<br><small>r = 연 금리 ÷ 12, n = 상환 개월 수</small></p>
+  <h3>원금균등상환</h3>
+  <p>매달 <strong>같은 원금</strong>에 남은 원금의 이자를 더해 내요. 첫 달 부담이 가장 크고 점점 줄어요. 원금이 빨리 줄어서 <strong>총 이자가 가장 적어요</strong>.</p>
+  <h3>만기일시상환</h3>
+  <p>매달 이자만 내다가 <strong>만기에 원금을 한꺼번에</strong> 갚아요. 월 부담은 가장 작지만 원금이 줄지 않아 총 이자가 가장 많아요. 신용대출, 전세대출에서 흔해요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>중도상환하면 이자가 얼마나 줄어드나요?</summary>
+    <p>남은 원금이 줄어든 만큼 이후 이자가 줄어요. 다만 대출 후 3년 이내에는 보통 중도상환수수료(0.5~1.5% 수준)가 붙으니, 아끼는 이자와 수수료를 비교해 보세요.</p></details>
+  <details class="faq"><summary>변동금리 대출도 계산할 수 있나요?</summary>
+    <p>현재 금리가 만기까지 유지된다고 가정한 결과예요. 변동금리는 금리가 바뀔 때마다 월 상환액이 다시 계산되므로, 금리를 바꿔 넣어 보며 범위를 가늠해 보세요.</p></details>
+  <details class="faq"><summary>은행 계산과 몇 원 차이가 나는 이유는?</summary>
+    <p>은행은 실제 일수(일할 계산)로 이자를 매기거나 원 단위 처리 방식이 달라서 소액 차이가 날 수 있어요. 이 계산기는 매월 같은 기간으로 계산해요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../severance/">🧾 퇴직금 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/" aria-current="page">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/loan.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>연차 계산기 2026 - 입사일·회계연도 기준, 남은 연차와 연차수당 | 머니셈</title>
+<meta name="description" content="입사일만 넣으면 지금까지 발생한 연차, 사용 가능한 연차, 다음 연차 발생일을 계산합니다. 1년 미만 월차, 회계연도 비례연차, 퇴사 시 정산과 미사용 연차수당까지.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/annual-leave/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="연차 계산기 2026 - 입사일·회계연도 기준, 남은 연차와 연차수당 | 머니셈">
+<meta property="og:description" content="입사일만 넣으면 지금까지 발생한 연차, 사용 가능한 연차, 다음 연차 발생일을 계산합니다. 1년 미만 월차, 회계연도 비례연차, 퇴사 시 정산과 미사용 연차수당까지.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/annual-leave/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"연차 계산기","url":"https://yujaeheon123.github.io/moneysem/annual-leave/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"5인 미만 사업장도 연차가 있나요?","acceptedAnswer":{"@type":"Answer","text":"2026년 10월 현재 상시 근로자 5인 미만 사업장에는 근로기준법의 연차휴가 규정이 적용되지 않아 법적 의무가 없어요. 정부가 확대 적용을 추진하고 있으니 시행되면 계산기에 반영할게요. 근로계약서나 취업규칙에 연차를 주기로 정했다면 그에 따라 받을 수 있어요."}},{"@type":"Question","name":"결근이 있으면 연차가 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"1년 미만 기간에는 결근한 달의 연차 1일이 생기지 않아요. 1년 이상 근무자는 1년간 출근율이 80% 미만이면 15일 대신 개근한 달 수만큼만 생겨요. 이 계산기는 매달 개근, 80% 이상 출근을 가정해요."}},{"@type":"Question","name":"육아휴직 기간도 근속기간에 들어가나요?","acceptedAnswer":{"@type":"Answer","text":"네. 육아휴직, 출산전후휴가, 업무상 부상·질병 휴업 기간은 출근한 것으로 봐서 연차 계산에서 불리하게 다루지 않아요."}},{"@type":"Question","name":"연차는 언제까지 써야 하나요?","acceptedAnswer":{"@type":"Answer","text":"1년 이상 근무로 생긴 연차는 생긴 날부터 1년 안에 써야 하고, 입사 첫해 월 개근 연차는 입사 1주년까지 써야 해요. 기간이 지나면 소멸하고, 회사가 사용촉진을 하지 않았다면 미사용 수당으로 받아요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/" aria-current="page">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">근로기준법 제60조 · 2026년 기준</span>
+<h1>연차 계산기</h1>
+<p class="lead">입사일만 넣으면 지금까지 생긴 연차, 지금 쓸 수 있는 연차, 다음 연차가 생기는 날을 알려줘요. 입사일 기준과 회계연도 기준을 모두 계산하고, 남은 연차의 수당도 계산해요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="grid-2">
+    <div class="field">
+      <label for="hire">입사일</label>
+      <div class="input"><input id="hire" name="hire" type="date"></div>
+    </div>
+    <div class="field">
+      <label for="asOf">기준일</label>
+      <div class="input"><input id="asOf" name="asOf" type="date"></div>
+      <div class="hint" data-static="1">재직 중이면 오늘, 퇴사했다면 마지막 근무일</div>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">회사의 연차 부여 방식</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="basis" value="hire" checked><span>입사일 기준</span></label>
+      <label><input type="radio" name="basis" value="fiscal"><span>회계연도 (1월 1일)</span></label>
+    </div>
+    <div class="hint" data-static="1">모르겠다면 입사일 기준으로 보세요. 법은 입사일 기준이에요.</div>
+  </div>
+  <div class="field">
+    <span class="label">사업장 규모</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="size" value="big" checked><span>상시 5인 이상</span></label>
+      <label><input type="radio" name="size" value="small"><span>5인 미만</span></label>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="used">이미 쓴 연차 (현재 남아있는 것 중)</label>
+      <div class="input"><input id="used" name="used" inputmode="decimal" value="0"><span class="unit">일</span></div>
+      <div class="hint" data-static="1">반차는 0.5일</div>
+    </div>
+    <div class="field">
+      <label for="wage">월 통상임금 (선택)</label>
+      <div class="input"><input id="wage" name="wage" inputmode="numeric" data-money="won" placeholder="연차수당 계산용"><span class="unit">원</span></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+<section class="card" id="history-card"><h2 style="margin-top:0">연차 발생 내역</h2><div id="history"></div></section>
+
+<article class="article">
+  <h2>연차는 이렇게 생겨요</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>근속 기간</th><th>연차</th><th>조건·비고</th></tr></thead>
+    <tbody>
+      <tr><td>1년 미만</td><td>1개월 개근마다 1일 (최대 11일)</td><td>입사 1주년이 되면 소멸</td></tr>
+      <tr><td>1년 ~ 3년 미만</td><td>15일</td><td>1년간 80% 이상 출근</td></tr>
+      <tr><td>3년 ~ 5년 미만</td><td>16일</td><td rowspan="3">최초 1년을 넘는 근속 2년마다 1일 추가</td></tr>
+      <tr><td>5년 ~ 7년 미만</td><td>17일</td></tr>
+      <tr><td>…</td><td>…</td></tr>
+      <tr><td>21년 이상</td><td>25일</td><td>최대 25일</td></tr>
+    </tbody>
+  </table></div>
+  <p>입사 첫해에는 매달 개근할 때마다 1일씩 최대 11일, 1년을 채우면 15일이 생겨요. 그래서 입사 후 2년 동안 받을 수 있는 연차는 최대 26일이에요. 다만 2020년 3월 31일 법 개정으로, 첫해의 11일은 입사 1주년까지 써야 해요.</p>
+
+  <h2>1년만 일하고 그만두면 15일을 받을까?</h2>
+  <p>받지 못해요. 대법원(2021다227100)과 고용노동부 해석에 따르면 15일 연차는 1년을 채운 <strong>다음 날(366일째)에도 근로관계가 이어져야</strong> 생겨요. 2025년 1월 1일 입사자가 2025년 12월 31일까지 일하고 퇴사하면 연차는 11일이고, 2026년 1월 1일까지 재직하면 15일이 더 생겨요. 이 계산기에서 '기준일'에 마지막 근무일을 넣으면 이 기준대로 계산돼요.</p>
+
+  <h2>회계연도 기준이란?</h2>
+  <p>직원마다 입사일이 달라 관리가 어려워서 많은 회사가 1월 1일에 모두에게 연차를 한꺼번에 줘요. 연도 중간에 입사했다면 다음 해 1월 1일에 <strong>15일 × (입사 첫해 근무일수 ÷ 365)</strong>만큼 비례해서 받고, 그다음 해부터 15일을 받아요.</p>
+  <p class="formula">예) 2025년 7월 1일 입사 → 2026년 1월 1일에 15 × 184 ÷ 365 ≒ 7.56일 (월 개근 연차는 별도)</p>
+  <p>회계연도 기준은 법에서 허용하는 관리 방식일 뿐이라, <strong>퇴사할 때 입사일 기준으로 계산한 것보다 적게 받았다면 차이만큼 수당으로 정산</strong>해 줘야 해요.</p>
+
+  <h2>미사용 연차수당</h2>
+  <p class="formula">연차수당 = 1일 통상임금 × 남은 연차 일수<br><small>1일 통상임금 = 월 통상임금 ÷ 209시간 × 8시간 (주 40시간 근무 기준)</small></p>
+  <p>통상임금은 기본급과 매달 고정적으로 받는 수당이에요. 회사가 연차 사용촉진(근로기준법 제61조)을 법에 맞게 했다면 남은 연차에 대한 수당을 주지 않아도 돼요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>5인 미만 사업장도 연차가 있나요?</summary>
+    <p>2026년 10월 현재 상시 근로자 5인 미만 사업장에는 근로기준법의 연차휴가 규정이 적용되지 않아 법적 의무가 없어요. 정부가 확대 적용을 추진하고 있으니 시행되면 계산기에 반영할게요. 근로계약서나 취업규칙에 연차를 주기로 정했다면 그에 따라 받을 수 있어요.</p></details>
+  <details class="faq"><summary>결근이 있으면 연차가 어떻게 되나요?</summary>
+    <p>1년 미만 기간에는 결근한 달의 연차 1일이 생기지 않아요. 1년 이상 근무자는 1년간 출근율이 80% 미만이면 15일 대신 개근한 달 수만큼만 생겨요. 이 계산기는 매달 개근, 80% 이상 출근을 가정해요.</p></details>
+  <details class="faq"><summary>육아휴직 기간도 근속기간에 들어가나요?</summary>
+    <p>네. 육아휴직, 출산전후휴가, 업무상 부상·질병 휴업 기간은 출근한 것으로 봐서 연차 계산에서 불리하게 다루지 않아요.</p></details>
+  <details class="faq"><summary>연차는 언제까지 써야 하나요?</summary>
+    <p>1년 이상 근무로 생긴 연차는 생긴 날부터 1년 안에 써야 하고, 입사 첫해 월 개근 연차는 입사 1주년까지 써야 해요. 기간이 지나면 소멸하고, 회사가 사용촉진을 하지 않았다면 미사용 수당으로 받아요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../severance/">🧾 퇴직금 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../savings/">🐷 예적금 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/" aria-current="page">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/annual-leave.js"></script>
+</body>
+</html>

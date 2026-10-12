@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>예금·적금 이자 계산기 - 세후 이자, 단리·월복리 | 머니셈</title>
+<meta name="description" content="예금과 적금의 만기 수령액을 단리·월복리, 일반과세(15.4%)·비과세 기준으로 계산합니다. 적금 이자가 생각보다 적은 이유도 설명해요.">
+<link rel="canonical" href="https://yujaeheon123.github.io/moneysem/savings/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="머니셈">
+<meta property="og:title" content="예금·적금 이자 계산기 - 세후 이자, 단리·월복리 | 머니셈">
+<meta property="og:description" content="예금과 적금의 만기 수령액을 단리·월복리, 일반과세(15.4%)·비과세 기준으로 계산합니다. 적금 이자가 생각보다 적은 이유도 설명해요.">
+<meta property="og:url" content="https://yujaeheon123.github.io/moneysem/savings/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b7a55">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>if (/MoneysemApp/.test(navigator.userAgent)) document.documentElement.classList.add("in-app");</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"예적금 이자 계산기","url":"https://yujaeheon123.github.io/moneysem/savings/","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"단리와 월복리 차이가 큰가요?","acceptedAnswer":{"@type":"Answer","text":"1~2년 단기에서는 차이가 크지 않아요. 연 4%, 예금 1천만원, 1년이면 단리 40만원, 월복리 약 40만 7천원으로 7천원 정도 차이예요. 기간이 길어질수록 복리 효과가 커져요."}},{"@type":"Question","name":"예금과 적금 중 무엇이 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"목돈이 있다면 같은 금리에서 예금이 이자를 더 많이 받아요. 매달 모으는 습관이 목적이라면 적금이 좋고, 적금 금리가 예금보다 꽤 높아야 실제 이자가 비슷해져요."}},{"@type":"Question","name":"중도해지하면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"약정 금리 대신 훨씬 낮은 중도해지 이율이 적용돼요. 상품마다 다르니 가입 전에 중도해지 이율표를 확인하세요."}}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark">₩</span>머니셈</a>
+    <nav class="nav" aria-label="계산기 목록"><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/" aria-current="page">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<span class="badge">세후 수령액 기준</span>
+<h1>예금·적금 이자 계산기</h1>
+<p class="lead">만기에 실제로 통장에 들어오는 돈을 세금까지 빼고 계산해요.</p>
+
+<form class="card form" id="form" autocomplete="off">
+  <div class="field">
+    <span class="label">상품 종류</span>
+    <div class="segmented" role="radiogroup">
+      <label><input type="radio" name="type" value="savings" checked><span>적금 (매달 납입)</span></label>
+      <label><input type="radio" name="type" value="deposit"><span>예금 (한 번에 예치)</span></label>
+    </div>
+  </div>
+  <div class="field">
+    <label for="amount" id="amount-label">월 납입액</label>
+    <div class="input"><input id="amount" name="amount" inputmode="numeric" data-money="won" value="500,000"><span class="unit">원</span></div>
+    <div class="hint"></div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <label for="rate">연 금리</label>
+      <div class="input"><input id="rate" name="rate" inputmode="decimal" value="3.5"><span class="unit">%</span></div>
+    </div>
+    <div class="field">
+      <label for="months">기간</label>
+      <div class="input"><input id="months" name="months" inputmode="numeric" value="12"><span class="unit">개월</span></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="field">
+      <span class="label">이자 방식</span>
+      <div class="segmented" role="radiogroup">
+        <label><input type="radio" name="compound" value="simple" checked><span>단리</span></label>
+        <label><input type="radio" name="compound" value="monthly"><span>월복리</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="tax">과세 방식</label>
+      <select id="tax" name="tax">
+        <option value="0.154">일반과세 (15.4%)</option>
+        <option value="0">비과세 (0%)</option>
+        <option value="0.014">농어촌특별세만 (1.4%)</option>
+      </select>
+    </div>
+  </div>
+</form>
+
+<section class="card result" id="result" aria-live="polite"></section>
+
+
+<article class="article">
+  <h2>적금 이자가 생각보다 적은 이유</h2>
+  <p>연 5% 적금에 월 100만원씩 1년을 넣으면 이자가 60만원일 것 같지만, 실제로는 <strong>약 32만 5천원(세전)</strong>이에요. 첫 달에 넣은 돈은 12개월 동안 이자가 붙지만, 마지막 달에 넣은 돈은 1개월치 이자만 받기 때문이에요. 평균적으로 원금의 절반 정도만 1년 내내 예치한 효과가 납니다.</p>
+  <p class="formula">적금 단리 이자 = 월 납입액 × (연 금리 ÷ 12) × n(n+1) ÷ 2</p>
+  <p class="formula">예금 단리 이자 = 원금 × 연 금리 × (개월 ÷ 12)</p>
+
+  <h2>이자에 붙는 세금</h2>
+  <ul>
+    <li><strong>일반과세 15.4%</strong>: 이자소득세 14% + 지방소득세 1.4%. 대부분의 예적금이 해당돼요.</li>
+    <li><strong>비과세</strong>: 비과세종합저축(만 65세 이상·장애인 등), ISA 일부 한도 등.</li>
+    <li><strong>1.4%</strong>: 농협·수협·신협·새마을금고 등 조합원 예탁금의 저율과세 한도 내 이자(농어촌특별세만 부과). 적용 기한과 한도는 해마다 바뀔 수 있으니 가입 기관에 확인하세요.</li>
+  </ul>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq"><summary>단리와 월복리 차이가 큰가요?</summary>
+    <p>1~2년 단기에서는 차이가 크지 않아요. 연 4%, 예금 1천만원, 1년이면 단리 40만원, 월복리 약 40만 7천원으로 7천원 정도 차이예요. 기간이 길어질수록 복리 효과가 커져요.</p></details>
+  <details class="faq"><summary>예금과 적금 중 무엇이 유리한가요?</summary>
+    <p>목돈이 있다면 같은 금리에서 예금이 이자를 더 많이 받아요. 매달 모으는 습관이 목적이라면 적금이 좋고, 적금 금리가 예금보다 꽤 높아야 실제 이자가 비슷해져요.</p></details>
+  <details class="faq"><summary>중도해지하면 어떻게 되나요?</summary>
+    <p>약정 금리 대신 훨씬 낮은 중도해지 이율이 적용돼요. 상품마다 다르니 가입 전에 중도해지 이율표를 확인하세요.</p></details>
+
+  <h2>다른 계산기</h2>
+  <div class="related"><a href="../salary/">💰 연봉 실수령액 계산기</a><a href="../severance/">🧾 퇴직금 계산기</a><a href="../loan/">🏦 대출 이자 계산기</a><a href="../weekly-pay/">⏰ 주휴수당 계산기</a><a href="../part-time/">🧑‍🍳 알바 월급 계산기</a><a href="../annual-leave/">🏖️ 연차 계산기</a></div>
+</article>
+
+
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav><a href="../salary/">연봉 실수령액</a><a href="../severance/">퇴직금</a><a href="../loan/">대출 이자</a><a href="../savings/" aria-current="page">예적금 이자</a><a href="../weekly-pay/">주휴수당</a><a href="../part-time/">알바 월급</a><a href="../annual-leave/">연차</a><a href="../about/">소개</a><a href="../privacy/">개인정보처리방침</a></nav>
+    <div>계산 결과는 참고용이며, 실제 금액은 회사·금융기관의 기준에 따라 다를 수 있어요. 기준: 2026년 법령·고시.</div>
+    <div>© 2026 머니셈</div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/pages/savings.js"></script>
+</body>
+</html>
